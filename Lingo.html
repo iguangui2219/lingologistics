@@ -1,1 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lingo Logistics | Global Freight Shipping Partner</title>
+    <meta name="description" content="Lingo Logistics - Your reliable global freight shipping partner based in Shenzhen, China. Dedicated warehousing, stable routes to USA, Canada, Australia, Germany, France and Europe.">
+    <link rel="canonical" href="https://www.lingologistics.cn">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #1e3a8a;
+            --primary-dark: #1e40af;
+            --accent: #f97316;
+            --accent-light: #fb923c;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg: #ffffff;
+            --bg-alt: #f8fafc;
+            --border: #e5e7eb;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
+        /* Language Switcher */
+        .lang-switcher { display: flex; align-items: center; gap: 0.5rem; margin-right: 1.5rem; }
+        .lang-btn {
+            background: none; border: 1px solid var(--border); padding: 0.4rem 0.8rem;
+            border-radius: 6px; cursor: pointer; font-size: 0.875rem; font-weight: 500;
+            color: var(--text-light); transition: all 0.3s;
+            display: flex; align-items: center; gap: 0.25rem;
+        }
+        .lang-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .lang-btn:hover:not(.active) { border-color: var(--primary); color: var(--primary); }
+
+        /* Navigation */
+        .navbar {
+            position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        .nav-container {
+            max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+            display: flex; justify-content: space-between; align-items: center; height: 80px;
+        }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .logo-mark {
+            width: 44px; height: 44px; background: var(--primary); border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: 800; font-size: 1.25rem;
+        }
+        .logo-text { font-size: 1.35rem; font-weight: 700; color: var(--text); letter-spacing: -0.5px; }
+        .logo-text span { color: var(--accent); }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a {
+            text-decoration: none; color: var(--text); font-weight: 500; font-size: 0.95rem;
+            transition: color 0.3s; position: relative;
+        }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
+            background: var(--accent); transition: width 0.3s;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-cta {
+            background: var(--accent); color: white; padding: 0.6rem 1.5rem;
+            border-radius: 6px; text-decoration: none; font-weight: 600;
+            transition: all 0.3s;
+        }
+        .nav-cta:hover {
+            background: var(--accent-light); transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(249,115,22,0.3);
+        }
+        .mobile-menu-btn {
+            display: none; background: none; border: none;
+            font-size: 1.5rem; cursor: pointer; color: var(--text);
+        }
+
+        /* Hero */
+        .hero {
+            margin-top: 80px; min-height: calc(100vh - 80px);
+            background: linear-gradient(135deg, var(--primary) 0%, #0f172a 100%);
+            display: flex; align-items: center; position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/></svg>');
+            background-size: 100px 100px; opacity: 0.5;
+        }
+        .hero-container {
+            max-width: 1200px; margin: 0 auto; padding: 4rem 2rem;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+            align-items: center; position: relative; z-index: 1;
+        }
+        .shenzhen-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(255,255,255,0.15); padding: 0.5rem 1rem;
+            border-radius: 20px; font-size: 0.9rem; margin-bottom: 1.5rem;
+            color: rgba(255,255,255,0.9);
+        }
+        .hero-content h1 {
+            font-size: 3.2rem; color: white; line-height: 1.2;
+            margin-bottom: 1.5rem; font-weight: 800;
+        }
+        .hero-content h1 span { color: var(--accent); }
+        .hero-content .subtitle {
+            font-size: 1.4rem; color: rgba(255,255,255,0.9);
+            margin-bottom: 1.5rem; font-weight: 600;
+        }
+        .hero-content p {
+            font-size: 1.1rem; color: rgba(255,255,255,0.85);
+            margin-bottom: 2rem; line-height: 1.8;
+        }
+        .hero-stats { display: flex; gap: 2rem; margin-bottom: 2.5rem; }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 2rem; font-weight: 800; color: var(--accent); display: block; }
+        .stat-label { font-size: 0.875rem; color: rgba(255,255,255,0.7); }
+        .hero-buttons { display: flex; gap: 1rem; }
+        .btn-primary {
+            background: var(--accent); color: white; padding: 1rem 2rem; border-radius: 8px;
+            text-decoration: none; font-weight: 600; display: inline-flex; align-items: center;
+            gap: 0.5rem; transition: all 0.3s; border: none; cursor: pointer; font-size: 1rem;
+        }
+        .btn-primary:hover {
+            background: var(--accent-light); transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(249,115,22,0.3);
+        }
+        .btn-secondary {
+            background: transparent; color: white; padding: 1rem 2rem; border-radius: 8px;
+            text-decoration: none; font-weight: 600; display: inline-flex; align-items: center;
+            gap: 0.5rem; border: 2px solid rgba(255,255,255,0.3);
+            transition: all 0.3s; cursor: pointer; font-size: 1rem;
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: white; }
+        .hero-visual { position: relative; }
+        .hero-card {
+            background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2); border-radius: 16px;
+            padding: 2rem; color: white; animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-20px);} }
+        .tracking-box {
+            background: white; border-radius: 12px; padding: 1.5rem; margin-top: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        .tracking-box h3 { color: var(--text); font-size: 1rem; margin-bottom: 1rem; }
+        .tracking-input { display: flex; gap: 0.5rem; }
+        .tracking-input input {
+            flex: 1; padding: 0.75rem 1rem; border: 2px solid var(--border);
+            border-radius: 8px; font-size: 1rem; outline: none; transition: border-color 0.3s;
+        }
+        .tracking-input input:focus { border-color: var(--primary); }
+        .tracking-input button {
+            background: var(--primary); color: white; border: none;
+            padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer;
+            font-weight: 600; transition: background 0.3s;
+        }
+        .tracking-input button:hover { background: var(--primary-dark); }
+        .tracking-result {
+            margin-top: 1rem; padding: 1rem; background: var(--bg-alt);
+            border-radius: 8px; display: none; font-size: 0.9rem; color: var(--text);
+        }
+        .tracking-result.active { display: block; }
+        .tracking-status { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; }
+
+        /* Sections */
+        .section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-header h2 { font-size: 2.5rem; color: var(--text); margin-bottom: 1rem; font-weight: 800; }
+        .section-header p { color: var(--text-light); font-size: 1.125rem; max-width: 700px; margin: 0 auto; }
+
+        /* Services */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .service-card {
+            background: white; border: 1px solid var(--border); border-radius: 16px;
+            padding: 2.5rem; transition: all 0.3s ease; position: relative; overflow: hidden;
+        }
+        .service-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--accent); transform: scaleX(0); transition: transform 0.3s;
+        }
+        .service-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: transparent; }
+        .service-card:hover::before { transform: scaleX(1); }
+        .service-icon {
+            width: 60px; height: 60px; background: var(--bg-alt); border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.75rem; margin-bottom: 1.5rem; color: var(--primary);
+        }
+        .service-card h3 { font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--text); }
+        .service-card p { color: var(--text-light); font-size: 0.95rem; line-height: 1.7; }
+
+        /* One-stop Banner */
+        .onestop-banner {
+            background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+            border: 2px dashed var(--accent); border-radius: 16px;
+            padding: 2rem; margin: 3rem 0; text-align: center;
+        }
+        .onestop-banner h3 { color: var(--primary); font-size: 1.5rem; margin-bottom: 1rem; }
+        .onestop-items { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 1rem; }
+        .onestop-item {
+            background: white; padding: 0.75rem 1.5rem; border-radius: 50px;
+            font-size: 0.95rem; color: var(--text);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+
+        /* Routes */
+        .route-section { background: var(--bg-alt); padding: 6rem 2rem; }
+        .route-container { max-width: 1200px; margin: 0 auto; }
+        .route-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .route-info h2 { font-size: 2.5rem; margin-bottom: 1.5rem; font-weight: 800; }
+        .route-info p { color: var(--text-light); font-size: 1.125rem; margin-bottom: 2rem; line-height: 1.8; }
+        .route-list { list-style: none; }
+        .route-list li {
+            display: flex; align-items: center; gap: 1rem;
+            padding: 1rem 0; border-bottom: 1px solid var(--border);
+        }
+        .route-list li:last-child { border-bottom: none; }
+        .route-dot { width: 12px; height: 12px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+        .route-list li strong { color: var(--text); display: block; margin-bottom: 0.25rem; }
+        .route-list li span { color: var(--text-light); font-size: 0.875rem; }
+        .route-visual {
+            background: white; border-radius: 20px; padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08); position: relative;
+        }
+        .map-svg { width: 100%; height: auto; }
+        .countries-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem; margin-top: 2rem;
+        }
+        .country-tag {
+            background: white; border: 1px solid var(--border); border-radius: 10px;
+            padding: 1rem; text-align: center; transition: all 0.3s;
+        }
+        .country-tag:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .country-tag .flag { font-size: 2rem; margin-bottom: 0.5rem; }
+        .country-tag .name { font-weight: 600; font-size: 0.9rem; color: var(--text); }
+
+        /* Calculator */
+        .calc-section { padding: 6rem 2rem; max-width: 800px; margin: 0 auto; }
+        .calc-box {
+            background: white; border-radius: 20px; padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08); border: 1px solid var(--border);
+        }
+        .calc-box h2 { text-align: center; margin-bottom: 2rem; font-size: 2rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text); }
+        .form-group input, .form-group select {
+            width: 100%; padding: 0.875rem 1rem; border: 2px solid var(--border);
+            border-radius: 10px; font-size: 1rem; outline: none;
+            transition: all 0.3s; font-family: inherit;
+        }
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--primary); box-shadow: 0 0 0 3px rgba(30,58,138,0.1);
+        }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .calc-result {
+            background: var(--bg-alt); border-radius: 12px; padding: 1.5rem;
+            margin-top: 2rem; display: none;
+        }
+        .calc-result.active { display: block; animation: slideUp 0.5s ease; }
+        @keyframes slideUp { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
+        .calc-result h3 { color: var(--primary); margin-bottom: 1rem; }
+        .price-tag { font-size: 2.5rem; font-weight: 800; color: var(--accent); }
+        .estimate-note { color: var(--text-light); font-size: 0.875rem; margin-top: 0.5rem; }
+
+        /* Testimonials */
+        .testimonials { background: var(--bg-alt); padding: 6rem 2rem; }
+        .testimonials-container { max-width: 1200px; margin: 0 auto; }
+        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
+        .testimonial-card {
+            background: white; padding: 2rem; border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .testimonial-card .stars { color: #fbbf24; margin-bottom: 1rem; font-size: 1.25rem; }
+        .testimonial-card p { color: var(--text); font-style: italic; margin-bottom: 1.5rem; line-height: 1.8; }
+        .testimonial-author { display: flex; align-items: center; gap: 1rem; }
+        .author-avatar {
+            width: 48px; height: 48px; background: var(--primary); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: 700;
+        }
+        .author-info h4 { color: var(--text); font-size: 1rem; }
+        .author-info span { color: var(--text-light); font-size: 0.875rem; }
+
+        /* CTA */
+        .cta-section {
+            background: var(--primary); padding: 5rem 2rem; text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .cta-section::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px; opacity: 0.3;
+        }
+        .cta-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+        .cta-content h2 { color: white; font-size: 2.5rem; margin-bottom: 1rem; }
+        .cta-content p { color: rgba(255,255,255,0.85); font-size: 1.25rem; margin-bottom: 2rem; }
+
+        /* Footer */
+        .footer { background: #0f172a; color: white; padding: 4rem 2rem 2rem; }
+        .footer-container {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem; margin-bottom: 3rem;
+        }
+        .footer-brand h3 {
+            font-size: 1.5rem; margin-bottom: 1rem;
+            display: flex; align-items: center; gap: 0.75rem;
+        }
+        .footer-brand p { color: rgba(255,255,255,0.7); line-height: 1.8; margin-bottom: 1.5rem; }
+        .footer-links h4 { font-size: 1.125rem; margin-bottom: 1.5rem; color: white; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a { color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.3s; }
+        .footer-links a:hover { color: white; }
+        .footer-bottom {
+            max-width: 1200px; margin: 0 auto; padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex; justify-content: space-between; align-items: center;
+            color: rgba(255,255,255,0.5); font-size: 0.875rem;
+        }
+        .social-links { display: flex; gap: 1rem; }
+        .social-links a {
+            width: 40px; height: 40px; background: rgba(255,255,255,0.1);
+            border-radius: 8px; display: flex; align-items: center; justify-content: center;
+            color: white; text-decoration: none; transition: all 0.3s;
+        }
+        .social-links a:hover { background: var(--accent); transform: translateY(-3px); }
+
+        /* Chat Widget */
+        .chat-widget {
+            position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
+            display: flex; flex-direction: column; gap: 1rem;
+        }
+        .chat-btn {
+            width: 56px; height: 56px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 1.5rem; cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s; text-decoration: none; border: none;
+            position: relative;
+        }
+        .chat-btn:hover { transform: scale(1.1) translateY(-3px); }
+        .chat-btn-whatsapp { background: #25D366; }
+        .chat-btn-wechat { background: #07C160; }
+        .chat-btn-main { background: var(--accent); }
+        .chat-btn-main::after {
+            content: ''; position: absolute; inset: 0; border-radius: 50%;
+            background: var(--accent); animation: ripple 2s infinite; z-index: -1;
+        }
+        @keyframes ripple { 0%{transform:scale(1);opacity:0.5;} 100%{transform:scale(1.5);opacity:0;} }
+        .chat-tooltip {
+            position: absolute; right: 70px; top: 50%; transform: translateY(-50%);
+            background: var(--text); color: white; padding: 0.5rem 1rem;
+            border-radius: 8px; font-size: 0.875rem; white-space: nowrap;
+            opacity: 0; visibility: hidden; transition: all 0.3s; pointer-events: none;
+        }
+        .chat-btn:hover .chat-tooltip { opacity: 1; visibility: visible; right: 75px; }
+
+        /* Animations */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 999;
+            opacity: 0; visibility: hidden; transition: all 0.3s;
+        }
+        .mobile-menu.active { opacity: 1; visibility: visible; }
+        .mobile-menu-panel {
+            position: absolute; right: 0; top: 0; bottom: 0; width: 280px;
+            background: white; padding: 2rem; transform: translateX(100%);
+            transition: transform 0.3s;
+        }
+        .mobile-menu.active .mobile-menu-panel { transform: translateX(0); }
+        .mobile-menu-close {
+            background: none; border: none; font-size: 1.5rem; cursor: pointer;
+            color: var(--text); margin-bottom: 2rem;
+        }
+        .mobile-menu-links { list-style: none; }
+        .mobile-menu-links li { margin-bottom: 1.5rem; }
+        .mobile-menu-links a {
+            text-decoration: none; color: var(--text); font-weight: 600;
+            font-size: 1.125rem;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-alt); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary-dark); }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-container, .route-content { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .footer-container { grid-template-columns: 1fr 1fr; }
+            .nav-links { display: none; }
+            .lang-switcher { margin-right: 0.5rem; }
+            .lang-btn span { display: none; }
+            .mobile-menu-btn { display: block; }
+            .hero-stats { justify-content: center; }
+            .chat-widget { bottom: 1rem; right: 1rem; }
+            .onestop-items { flex-direction: column; align-items: center; }
+        }
+        @media (max-width: 640px) {
+            .hero-content h1 { font-size: 2rem; }
+            .section-header h2 { font-size: 1.875rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .footer-container { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+            .hero-buttons { flex-direction: column; }
+            .countries-grid { grid-template-columns: repeat(2, 1fr); }
+            .testimonial-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-mark">L</div>
+                <div class="logo-text">Lingo <span>Logistics</span></div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#services" data-en="Services" data-cn="服务">Services</a></li>
+                <li><a href="#routes" data-en="Routes" data-cn="航线">Routes</a></li>
+                <li><a href="#calculator" data-en="Quote" data-cn="报价">Quote</a></li>
+                <li><a href="#testimonials" data-en="Reviews" data-cn="评价">Reviews</a></li>
+                <li><a href="#contact" data-en="Contact" data-cn="联系">Contact</a></li>
+            </ul>
+            <div style="display:flex;align-items:center;">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" onclick="setLanguage('en')" id="btn-en">
+                        <span>EN</span>
+                    </button>
+                    <button class="lang-btn" onclick="setLanguage('cn')" id="btn-cn">
+                        <span>CN</span>
+                    </button>
+                </div>
+                <a href="#contact" class="nav-cta" data-en="Get a Quote" data-cn="获取报价">Get a Quote</a>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">&#9776;</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" onclick="closeMobileMenu(event)">
+        <div class="mobile-menu-panel" onclick="event.stopPropagation()">
+            <button class="mobile-menu-close" onclick="toggleMobileMenu()">&times;</button>
+            <ul class="mobile-menu-links">
+                <li><a href="#services" onclick="toggleMobileMenu()" data-en="Services" data-cn="服务">Services</a></li>
+                <li><a href="#routes" onclick="toggleMobileMenu()" data-en="Routes" data-cn="航线">Routes</a></li>
+                <li><a href="#calculator" onclick="toggleMobileMenu()" data-en="Quote" data-cn="报价">Quote</a></li>
+                <li><a href="#testimonials" onclick="toggleMobileMenu()" data-en="Reviews" data-cn="评价">Reviews</a></li>
+                <li><a href="#contact" onclick="toggleMobileMenu()" data-en="Contact" data-cn="联系">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="shenzhen-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <span data-en="Shenzhen, China Headquarters" data-cn="中国深圳总部">Shenzhen, China Headquarters</span>
+                </div>
+                <h1 data-en="Global Freight Shipping, <span>Simplified</span>" data-cn="全球货运，<span>轻松无忧</span>">
+                    Global Freight Shipping, <span>Simplified</span>
+                </h1>
+                <p class="subtitle" data-en="Your reliable logistics partner from China to the world." data-cn="您从中国到世界的可靠物流伙伴。">
+                    Your reliable logistics partner from China to the world.
+                </p>
+                <p data-en="Dedicated warehousing in Shenzhen with stable shipping routes to USA, Canada, Australia, Germany, France and across Europe. We handle sea freight, air cargo, and express delivery with end-to-end tracking." data-cn="深圳专属仓储，稳定航线直达美国、加拿大、澳大利亚、德国、法国及全欧洲。我们提供海运、空运、快递及全程跟踪服务。">
+                    Dedicated warehousing in Shenzhen with stable shipping routes to USA, Canada, Australia, Germany, France and across Europe. We handle sea freight, air cargo, and express delivery with end-to-end tracking.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label" data-en="Years Experience" data-cn="年经验">Years Experience</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50K+</span>
+                        <span class="stat-label" data-en="Shipments Delivered" data-cn="完成发货">Shipments Delivered</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label" data-en="On-Time Rate" data-cn="准时率">On-Time Rate</span>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#calculator" class="btn-primary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                        <span data-en="Get a Quote" data-cn="获取报价">Get a Quote</span>
+                    </a>
+                    <a href="#services" class="btn-secondary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span data-en="Learn More" data-cn="了解更多">Learn More</span>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <h3 style="margin-bottom:0.5rem;font-size:1.25rem;" data-en="Why Choose Lingo?" data-cn="为什么选择Lingo？">Why Choose Lingo?</h3>
+                    <p style="font-size:0.95rem;color:rgba(255,255,255,0.85);line-height:1.7;" data-en="Real-time tracking, customs clearance support, and dedicated account managers for every shipment." data-cn="实时跟踪、清关支持、每笔货物专属客户经理。">
+                        Real-time tracking, customs clearance support, and dedicated account managers for every shipment.
+                    </p>
+                </div>
+                <div class="tracking-box">
+                    <h3 data-en="Track Your Shipment" data-cn="查询您的货物">Track Your Shipment</h3>
+                    <div class="tracking-input">
+                        <input type="text" placeholder="Enter tracking number (e.g. LINGO-123456)" id="trackingInput" data-en-placeholder="Enter tracking number (e.g. LINGO-123456)" data-cn-placeholder="输入查询单号 (例如 LINGO-123456)">
+                        <button onclick="trackShipment()" data-en="Track" data-cn="查询">Track</button>
+                    </div>
+                    <div class="tracking-result" id="trackingResult">
+                        <div class="tracking-status">
+                            <div class="status-dot"></div>
+                            <strong id="trackingStatus">In Transit</strong>
+                        </div>
+                        <div id="trackingDetails">Last updated: Shenzhen Port - Departed May 4, 2026</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <div class="section-header">
+            <h2 data-en="Our Services" data-cn="我们的服务">Our Services</h2>
+            <p data-en="Comprehensive logistics solutions tailored to your business needs — from warehousing to last-mile delivery." data-cn="量身定制的综合物流解决方案 — 从仓储到最后一公里配送。">
+                Comprehensive logistics solutions tailored to your business needs — from warehousing to last-mile delivery.
+            </p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                </div>
+                <h3 data-en="Sea Freight" data-cn="海运服务">Sea Freight</h3>
+                <p data-en="FCL and LCL shipping from Shenzhen to major ports worldwide. Competitive rates for 20ft and 40ft containers with flexible scheduling." data-cn="深圳至全球主要港口的整柜和拼箱海运。20尺和40尺集装箱具有竞争力的价格及灵活船期。">
+                    FCL and LCL shipping from Shenzhen to major ports worldwide. Competitive rates for 20ft and 40ft containers with flexible scheduling.
+                </p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"></path><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6"></path><path d="m22 12-8-8-4 4-8 8"></path><path d="M12 4v4"></path></svg>
+                </div>
+                <h3 data-en="Air Cargo" data-cn="空运服务">Air Cargo</h3>
+                <p data-en="Express air freight to USA, Canada, Australia, and Europe. 3-7 day delivery with full customs documentation handling." data-cn="快递空运至美国、加拿大、澳大利亚和欧洲。3-7天送达，全程清关文件处理。">
+                    Express air freight to USA, Canada, Australia, and Europe. 3-7 day delivery with full customs documentation handling.
+                </p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                </div>
+                <h3 data-en="Warehousing" data-cn="仓储服务">Warehousing</h3>
+                <p data-en="Dedicated warehouse space in Shenzhen with inventory management, pick & pack, and quality inspection before export." data-cn="深圳专属仓库空间，提供库存管理、拣货打包及出口前质检服务。">
+                    Dedicated warehouse space in Shenzhen with inventory management, pick & pack, and quality inspection before export.
+                </p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                </div>
+                <h3 data-en="Customs Clearance" data-cn="清关服务">Customs Clearance</h3>
+                <p data-en="Expert customs brokerage for smooth import/export processing. We handle documentation, duties, and compliance for all destinations." data-cn="专业报关行，顺畅处理进出口清关。我们负责所有目的地的文件、关税及合规事宜。">
+                    Expert customs brokerage for smooth import/export processing. We handle documentation, duties, and compliance for all destinations.
+                </p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                </div>
+                <h3 data-en="Express Delivery" data-cn="快递服务">Express Delivery</h3>
+                <p data-en="Door-to-door express shipping for urgent parcels. Real-time tracking and signature confirmation on every delivery." data-cn="门到门快递服务，适合紧急包裹。每件货物均可实时跟踪并签收确认。">
+                    Door-to-door express shipping for urgent parcels. Real-time tracking and signature confirmation on every delivery.
+                </p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                </div>
+                <h3 data-en="Amazon FBA" data-cn="亚马逊FBA">Amazon FBA</h3>
+                <p data-en="Specialized FBA prep and delivery to Amazon fulfillment centers in US, Canada, UK, Germany, France, and Australia." data-cn="专业FBA预处理及配送至美国、加拿大、英国、德国、法国和澳大利亚的亚马逊配送中心。">
+                    Specialized FBA prep and delivery to Amazon fulfillment centers in US, Canada, UK, Germany, France, and Australia.
+                </p>
+            </div>
+        </div>
+
+        <div class="onestop-banner fade-in">
+            <h3 data-en="One-Stop Logistics Solutions" data-cn="一站式物流解决方案">One-Stop Logistics Solutions</h3>
+            <p style="color:var(--text-light);max-width:600px;margin:0 auto;" data-en="From factory pickup to final delivery — we manage every step so you can focus on growing your business." data-cn="从工厂提货到最终交付 — 我们管理每一步，让您专注于业务发展。">
+                From factory pickup to final delivery — we manage every step so you can focus on growing your business.
+            </p>
+            <div class="onestop-items">
+                <div class="onestop-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span data-en="Pick-up & Collection" data-cn="提货揽收">Pick-up & Collection</span>
+                </div>
+                <div class="onestop-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span data-en="Warehousing" data-cn="仓储管理">Warehousing</span>
+                </div>
+                <div class="onestop-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span data-en="Quality Check" data-cn="质量检查">Quality Check</span>
+                </div>
+                <div class="onestop-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span data-en="Repacking & Labeling" data-cn="重新包装贴标">Repacking & Labeling</span>
+                </div>
+                <div class="onestop-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span data-en="Customs Declaration" data-cn="报关申报">Customs Declaration</span>
+                </div>
+                <div class="onestop-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span data-en="Last Mile Delivery" data-cn="末端派送">Last Mile Delivery</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Route Section -->
+    <section class="route-section" id="routes">
+        <div class="route-container">
+            <div class="route-content">
+                <div class="route-info">
+                    <h2 data-en="Global Shipping Routes" data-cn="全球运输航线">Global Shipping Routes</h2>
+                    <p data-en="Stable, reliable shipping lanes from Shenzhen to major destinations across North America, Oceania, and Europe." data-cn="从深圳到北美、大洋洲及欧洲主要目的地的稳定可靠航线。">
+                        Stable, reliable shipping lanes from Shenzhen to major destinations across North America, Oceania, and Europe.
+                    </p>
+                    <ul class="route-list">
+                        <li>
+                            <div class="route-dot"></div>
+                            <div>
+                                <strong data-en="USA West Coast" data-cn="美国西海岸">USA West Coast</strong>
+                                <span data-en="Los Angeles, Long Beach, Oakland — 14-18 days sea freight" data-cn="洛杉矶、长滩、奥克兰 — 海运14-18天">Los Angeles, Long Beach, Oakland — 14-18 days sea freight</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="route-dot"></div>
+                            <div>
+                                <strong data-en="USA East Coast" data-cn="美国东海岸">USA East Coast</strong>
+                                <span data-en="New York, Savannah, Miami — 25-30 days sea freight, 5-7 days air" data-cn="纽约、萨凡纳、迈阿密 — 海运25-30天，空运5-7天">New York, Savannah, Miami — 25-30 days sea freight, 5-7 days air</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="route-dot"></div>
+                            <div>
+                                <strong data-en="Canada" data-cn="加拿大">Canada</strong>
+                                <span data-en="Vancouver, Toronto, Montreal — 16-22 days sea freight" data-cn="温哥华、多伦多、蒙特利尔 — 海运16-22天">Vancouver, Toronto, Montreal — 16-22 days sea freight</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="route-dot"></div>
+                            <div>
+                                <strong data-en="Australia" data-cn="澳大利亚">Australia</strong>
+                                <span data-en="Sydney, Melbourne, Brisbane — 18-22 days sea freight" data-cn="悉尼、墨尔本、布里斯班 — 海运18-22天">Sydney, Melbourne, Brisbane — 18-22 days sea freight</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="route-dot"></div>
+                            <div>
+                                <strong data-en="Europe" data-cn="欧洲">Europe</strong>
+                                <span data-en="Germany, France, UK, Netherlands — 28-35 days sea, 6-8 days air" data-cn="德国、法国、英国、荷兰 — 海运28-35天，空运6-8天">Germany, France, UK, Netherlands — 28-35 days sea, 6-8 days air</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="route-visual">
+                    <svg class="map-svg" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="800" height="400" fill="#f0f9ff" rx="12"/>
+                        <!-- Simplified world map shapes -->
+                        <g fill="#cbd5e1" opacity="0.4">
+                            <!-- North America -->
+                            <path d="M50 80 Q120 50 200 70 L220 120 L180 160 L120 150 L80 130 Z"/>
+                            <!-- South America -->
+                            <path d="M180 180 L230 170 L260 240 L240 320 L200 300 L170 240 Z"/>
+                            <!-- Europe -->
+                            <path d="M360 70 L420 60 L450 90 L440 120 L400 130 L370 110 Z"/>
+                            <!-- Africa -->
+                            <path d="M360 150 L420 140 L440 200 L420 280 L380 260 L350 200 Z"/>
+                            <!-- Asia -->
+                            <path d="M460 60 L600 50 L650 80 L640 140 L580 160 L520 150 L480 120 Z"/>
+                            <!-- Australia -->
+                            <path d="M580 220 L650 210 L670 260 L640 280 L580 270 Z"/>
+                        </g>
+                        <!-- Route lines from Shenzhen -->
+                        <circle cx="580" cy="130" r="8" fill="#f97316" opacity="0.8"/>
+                        <text x="580" y="115" text-anchor="middle" font-size="12" font-weight="600" fill="#1e3a8a">Shenzhen</text>
+                        
+                        <line x1="580" y1="130" x2="120" y2="100" stroke="#f97316" stroke-width="2" stroke-dasharray="8 4" opacity="0.6">
+                            <animate attributeName="stroke-dashoffset" from="0" to="-48" dur="2s" repeatCount="indefinite"/>
+                        </line>
+                        <circle cx="120" cy="100" r="6" fill="#1e3a8a" opacity="0.7"/>
+                        
+                        <line x1="580" y1="130" x2="400" y2="100" stroke="#f97316" stroke-width="2" stroke-dasharray="8 4" opacity="0.6">
+                            <animate attributeName="stroke-dashoffset" from="0" to="-48" dur="2.5s" repeatCount="indefinite"/>
+                        </line>
+                        <circle cx="400" cy="100" r="6" fill="#1e3a8a" opacity="0.7"/>
+                        
+                        <line x1="580" y1="130" x2="620" y2="240" stroke="#f97316" stroke-width="2" stroke-dasharray="8 4" opacity="0.6">
+                            <animate attributeName="stroke-dashoffset" from="0" to="-48" dur="2.2s" repeatCount="indefinite"/>
+                        </line>
+                        <circle cx="620" cy="240" r="6" fill="#1e3a8a" opacity="0.7"/>
+                        
+                        <line x1="580" y1="130" x2="160" y2="110" stroke="#f97316" stroke-width="2" stroke-dasharray="8 4" opacity="0.6">
+                            <animate attributeName="stroke-dashoffset" from="0" to="-48" dur="2.8s" repeatCount="indefinite"/>
+                        </line>
+                        <circle cx="160" cy="110" r="6" fill="#1e3a8a" opacity="0.7"/>
+                    </svg>
+                    <div class="countries-grid">
+                        <div class="country-tag"><div class="flag">🇺🇸</div><div class="name">USA</div></div>
+                        <div class="country-tag"><div class="flag">🇨🇦</div><div class="name">Canada</div></div>
+                        <div class="country-tag"><div class="flag">🇦🇺</div><div class="name">Australia</div></div>
+                        <div class="country-tag"><div class="flag">🇩🇪</div><div class="name">Germany</div></div>
+                        <div class="country-tag"><div class="flag">🇫🇷</div><div class="name">France</div></div>
+                        <div class="country-tag"><div class="flag">🇬🇧</div><div class="name">UK</div></div>
+                        <div class="country-tag"><div class="flag">🇳🇱</div><div class="name">Netherlands</div></div>
+                        <div class="country-tag"><div class="flag">🇪🇸</div><div class="name">Spain</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calc-section" id="calculator">
+        <div class="calc-box">
+            <h2 data-en="Freight Cost Estimator" data-cn="运费估算器">Freight Cost Estimator</h2>
+            <form id="quoteForm" onsubmit="calculateQuote(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label data-en="Destination" data-cn="目的地">Destination</label>
+                        <select id="destination" required>
+                            <option value="" data-en="Select country..." data-cn="选择国家...">Select country...</option>
+                            <option value="usa" data-en="United States" data-cn="美国">United States</option>
+                            <option value="canada" data-en="Canada" data-cn="加拿大">Canada</option>
+                            <option value="australia" data-en="Australia" data-cn="澳大利亚">Australia</option>
+                            <option value="germany" data-en="Germany" data-cn="德国">Germany</option>
+                            <option value="france" data-en="France" data-cn="法国">France</option>
+                            <option value="uk" data-en="United Kingdom" data-cn="英国">United Kingdom</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label data-en="Shipping Mode" data-cn="运输方式">Shipping Mode</label>
+                        <select id="shippingMode" required>
+                            <option value="" data-en="Select mode..." data-cn="选择方式...">Select mode...</option>
+                            <option value="sea" data-en="Sea Freight (FCL 20ft)" data-cn="海运 (20尺整柜)">Sea Freight (FCL 20ft)</option>
+                            <option value="sea40" data-en="Sea Freight (FCL 40ft)" data-cn="海运 (40尺整柜)">Sea Freight (FCL 40ft)</option>
+                            <option value="lcl" data-en="Sea Freight (LCL)" data-cn="海运 (拼箱)">Sea Freight (LCL)</option>
+                            <option value="air" data-en="Air Cargo" data-cn="空运">Air Cargo</option>
+                            <option value="express" data-en="Express Delivery" data-cn="快递">Express Delivery</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label data-en="Weight (kg)" data-cn="重量 (公斤)">Weight (kg)</label>
+                        <input type="number" id="weight" placeholder="e.g. 500" min="1" required data-en-placeholder="e.g. 500" data-cn-placeholder="例如 500">
+                    </div>
+                    <div class="form-group">
+                        <label data-en="Volume (CBM)" data-cn="体积 (立方米)">Volume (CBM)</label>
+                        <input type="number" id="volume" placeholder="e.g. 2.5" min="0.01" step="0.01" required data-en-placeholder="e.g. 2.5" data-cn-placeholder="例如 2.5">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label data-en="Cargo Type" data-cn="货物类型">Cargo Type</label>
+                    <select id="cargoType">
+                        <option value="general" data-en="General Goods" data-cn="普通货物">General Goods</option>
+                        <option value="sensitive" data-en="Sensitive/Battery" data-cn="敏感货/电池">Sensitive/Battery</option>
+                        <option value="oversized" data-en="Oversized" data-cn="超大件">Oversized</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    <span data-en="Calculate Estimate" data-cn="计算估算">Calculate Estimate</span>
+                </button>
+            </form>
+            <div class="calc-result" id="calcResult">
+                <h3 data-en="Estimated Shipping Cost" data-cn="预估运费">Estimated Shipping Cost</h3>
+                <div class="price-tag" id="priceTag">$0.00</div>
+                <p class="estimate-note" data-en="*This is an estimate. Contact us for accurate pricing based on your specific requirements." data-cn="*此为估算价格。请联系我们获取基于您具体需求的准确报价。">
+                    *This is an estimate. Contact us for accurate pricing based on your specific requirements.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="testimonials-container">
+            <div class="section-header">
+                <h2 data-en="What Our Clients Say" data-cn="客户评价">What Our Clients Say</h2>
+                <p data-en="Trusted by 3,000+ businesses worldwide for reliable China freight forwarding." data-cn="全球3000+企业信赖的中国货运代理服务商。">
+                    Trusted by 3,000+ businesses worldwide for reliable China freight forwarding.
+                </p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p data-en="Lingo Logistics has been our freight partner for 3 years. Their Shenzhen warehouse team handles our FBA prep flawlessly, and delivery to Amazon US is always on schedule." data-cn="Lingo Logistics 已是我们3年的货运合作伙伴。他们的深圳仓库团队完美地处理我们的FBA预处理，亚马逊美国站配送永远准时。">
+                        Lingo Logistics has been our freight partner for 3 years. Their Shenzhen warehouse team handles our FBA prep flawlessly, and delivery to Amazon US is always on schedule.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JD</div>
+                        <div class="author-info">
+                            <h4>James Davidson</h4>
+                            <span data-en="E-commerce Seller, USA" data-cn="美国电商卖家">E-commerce Seller, USA</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p data-en="We switched to Lingo for our Germany route and haven't looked back. The customs clearance support alone saved us weeks of delays. Highly professional team." data-cn="我们改用Lingo的德国航线后再也没有回头。仅仅是清关支持就为我们节省了数周的延误。团队非常专业。">
+                        We switched to Lingo for our Germany route and haven't looked back. The customs clearance support alone saved us weeks of delays. Highly professional team.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SM</div>
+                        <div class="author-info">
+                            <h4>Sophie Mueller</h4>
+                            <span data-en="Import Manager, Germany" data-cn="德国进口经理">Import Manager, Germany</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p data-en="From pickup in Guangdong to delivery in Sydney, everything was transparent and trackable. The sea freight rates are very competitive compared to other forwarders." data-cn="从广东提货到悉尼配送，全程透明可追踪。与其他货代相比，他们的海运价格非常有竞争力。">
+                        From pickup in Guangdong to delivery in Sydney, everything was transparent and trackable. The sea freight rates are very competitive compared to other forwarders.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">LT</div>
+                        <div class="author-info">
+                            <h4>Lin Tan</h4>
+                            <span data-en="Procurement Director, Australia" data-cn="澳大利亚采购总监">Procurement Director, Australia</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="cta-content">
+            <h2 data-en="Ready to Ship?" data-cn="准备好发货了吗？">Ready to Ship?</h2>
+            <p data-en="Get a free quote in 24 hours. Our logistics experts are standing by to optimize your supply chain." data-cn="24小时内获取免费报价。我们的物流专家随时待命，优化您的供应链。">
+                Get a free quote in 24 hours. Our logistics experts are standing by to optimize your supply chain.
+            </p>
+            <a href="mailto:quote@lingologistics.cn" class="btn-primary" style="font-size:1.125rem;padding:1rem 2.5rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <span data-en="Email Us for a Quote" data-cn="邮件获取报价">Email Us for a Quote</span>
+            </a>
+            <p style="margin-top:1.5rem;color:rgba(255,255,255,0.7);font-size:0.95rem;" data-en="Or reach us directly: +86-755-XXXX-XXXX | quote@lingologistics.cn" data-cn="或直接联系我们: +86-755-XXXX-XXXX | quote@lingologistics.cn">
+                Or reach us directly: +86-755-XXXX-XXXX | quote@lingologistics.cn
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>
+                    <div class="logo-mark" style="width:36px;height:36px;font-size:1rem;">L</div>
+                    Lingo Logistics
+                </h3>
+                <p data-en="Your trusted freight forwarding partner from Shenzhen to the world. Sea freight, air cargo, warehousing, and customs clearance — all in one place." data-cn="您从深圳到世界的可信赖货运代理伙伴。海运、空运、仓储和清关 — 一站式服务。">
+                    Your trusted freight forwarding partner from Shenzhen to the world. Sea freight, air cargo, warehousing, and customs clearance — all in one place.
+                </p>
+                <div class="social-links">
+                    <a href="#" aria-label="WeChat"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.01-.27-.027-.407-.03zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z"/></svg></a>
+                    <a href="#" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+                    <a href="#" aria-label="Email"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4 data-en="Services" data-cn="服务">Services</h4>
+                <ul>
+                    <li><a href="#services" data-en="Sea Freight" data-cn="海运">Sea Freight</a></li>
+                    <li><a href="#services" data-en="Air Cargo" data-cn="空运">Air Cargo</a></li>
+                    <li><a href="#services" data-en="Warehousing" data-cn="仓储">Warehousing</a></li>
+                    <li><a href="#services" data-en="Customs Clearance" data-cn="清关">Customs Clearance</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4 data-en="Routes" data-cn="航线">Routes</h4>
+                <ul>
+                    <li><a href="#routes" data-en="USA" data-cn="美国">USA</a></li>
+                    <li><a href="#routes" data-en="Canada" data-cn="加拿大">Canada</a></li>
+                    <li><a href="#routes" data-en="Australia" data-cn="澳大利亚">Australia</a></li>
+                    <li><a href="#routes" data-en="Europe" data-cn="欧洲">Europe</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4 data-en="Company" data-cn="公司">Company</h4>
+                <ul>
+                    <li><a href="#" data-en="About Us" data-cn="关于我们">About Us</a></li>
+                    <li><a href="#testimonials" data-en="Testimonials" data-cn="客户评价">Testimonials</a></li>
+                    <li><a href="#contact" data-en="Contact" data-cn="联系我们">Contact</a></li>
+                    <li><a href="#" data-en="Privacy Policy" data-cn="隐私政策">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p data-en="2026 Lingo Logistics. All rights reserved." data-cn="2026 Lingo Logistics. 保留所有权利。">
+                2026 Lingo Logistics. All rights reserved.
+            </p>
+            <p data-en="Shenzhen, China" data-cn="中国深圳">Shenzhen, China</p>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <a href="https://wa.me/86138XXXXXXXX" target="_blank" class="chat-btn chat-btn-whatsapp" aria-label="WhatsApp">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span class="chat-tooltip">WhatsApp</span>
+        </a>
+        <a href="#" class="chat-btn chat-btn-wechat" aria-label="WeChat">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.01-.27-.027-.407-.03zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z"/></svg>
+            <span class="chat-tooltip">WeChat</span>
+        </a>
+        <button class="chat-btn chat-btn-main" onclick="scrollToContact()" aria-label="Contact">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            <span class="chat-tooltip" data-en="Contact Us" data-cn="联系我们">Contact Us</span>
+        </button>
+    </div>
+
+    <script>
+        // Language Switcher
+        let currentLang = 'en';
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.getElementById('btn-cn').classList.toggle('active', lang === 'cn');
+            
+            document.querySelectorAll('[data-en][data-cn]').forEach(el => {
+                if (el.tagName === 'INPUT' || el.tagName === 'SELECT') {
+                    if (el.hasAttribute('data-en-placeholder')) {
+                        el.placeholder = lang === 'cn' ? el.getAttribute('data-cn-placeholder') : el.getAttribute('data-en-placeholder');
+                    }
+                } else {
+                    el.innerHTML = lang === 'cn' ? el.getAttribute('data-cn') : el.getAttribute('data-en');
+                }
+            });
+            
+            // Update select options
+            document.querySelectorAll('select option[data-en][data-cn]').forEach(opt => {
+                opt.textContent = lang === 'cn' ? opt.getAttribute('data-cn') : opt.getAttribute('data-en');
+            });
+        }
+
+        // Mobile Menu
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+            document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('active') ? 'hidden' : '';
+        }
+        function closeMobileMenu(e) {
+            if (e.target === document.getElementById('mobileMenu')) toggleMobileMenu();
+        }
+
+        // Tracking
+        function trackShipment() {
+            const input = document.getElementById('trackingInput').value.trim();
+            const result = document.getElementById('trackingResult');
+            if (input) {
+                result.classList.add('active');
+                const statuses = [
+                    {en: 'In Transit', cn: '运输中', detail: 'Last updated: Shenzhen Port - Departed May 4, 2026'},
+                    {en: 'Customs Clearance', cn: '清关中', detail: 'Last updated: Los Angeles Port - Arrived May 3, 2026'},
+                    {en: 'Out for Delivery', cn: '派送中', detail: 'Last updated: Local Distribution Center - May 5, 2026'}
+                ];
+                const rand = statuses[Math.floor(Math.random() * statuses.length)];
+                document.getElementById('trackingStatus').textContent = currentLang === 'cn' ? rand.cn : rand.en;
+                document.getElementById('trackingDetails').textContent = rand.detail;
+            }
+        }
+
+        // Quote Calculator
+        function calculateQuote(e) {
+            e.preventDefault();
+            const destination = document.getElementById('destination').value;
+            const mode = document.getElementById('shippingMode').value;
+            const weight = parseFloat(document.getElementById('weight').value) || 0;
+            const volume = parseFloat(document.getElementById('volume').value) || 0;
+            const cargoType = document.getElementById('cargoType').value;
+            
+            const baseRates = {
+                usa: {sea: 1200, sea40: 2200, lcl: 85, air: 5.5, express: 8.2},
+                canada: {sea: 1350, sea40: 2450, lcl: 92, air: 6.0, express: 9.0},
+                australia: {sea: 1100, sea40: 2000, lcl: 78, air: 5.0, express: 7.5},
+                germany: {sea: 1500, sea40: 2800, lcl: 105, air: 6.5, express: 10.0},
+                france: {sea: 1550, sea40: 2900, lcl: 108, air: 6.8, express: 10.5},
+                uk: {sea: 1600, sea40: 3000, lcl: 110, air: 7.0, express: 11.0}
+            };
+            
+            let cost = 0;
+            const rates = baseRates[destination];
+            if (rates) {
+                if (mode === 'sea' || mode === 'sea40') {
+                    cost = rates[mode];
+                } else if (mode === 'lcl') {
+                    cost = Math.max(rates.lcl * volume, rates.lcl * 1);
+                } else if (mode === 'air') {
+                    cost = rates.air * weight;
+                } else if (mode === 'express') {
+                    cost = rates.express * weight;
+                }
+            }
+            
+            if (cargoType === 'sensitive') cost *= 1.3;
+            if (cargoType === 'oversized') cost *= 1.5;
+            
+            document.getElementById('priceTag').textContent = '$' + cost.toFixed(2);
+            document.getElementById('calcResult').classList.add('active');
+        }
+
+        // Scroll to contact
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({behavior: 'smooth'});
+        }
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {threshold: 0.1});
+        
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.08)';
+            } else {
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
